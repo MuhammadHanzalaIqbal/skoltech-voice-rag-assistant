@@ -1,0 +1,9 @@
+tqdm
+langchain
+langchain-community
+torch
+faiss-cpu
+redis
+groq
+python-multipart
+#numpy == 1.24.3

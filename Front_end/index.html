@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.309.0/lucide.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <button class="new-chat-btn">
+            <span>➕</span> New Chat
+        </button>
+
+        <div class="model-selector">
+            <h3>Model</h3>
+            <div class="model-option selected">
+                <span>●</span> Meta-Llama-3.3-70B
+            </div>
+        </div>
+
+        <div class="chat-history" id="chat-history">
+            <!-- Chat history items will be inserted here -->
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1>Skoltech University Voice Assistant 🤖</h1>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai-message">
+                    Hello! I'm your AI assistant. How can I help you today?
+                    <div class="timestamp">Today, just now</div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typing-indicator">
+                AI is thinking<span>...</span>
+            </div>
+
+            <div class="recording-indicator" id="recording-indicator">
+                Listening<span>...</span>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="query-input" placeholder="Type your message..." autocomplete="off">
+                <button id="voice-record-btn" class="voice-btn">
+                    <span class="mic-icon">🎙️</span>
+                </button>
+                <button id="submit-btn">
+                    Send
+                    <span>→</span>
+                </button>
+            </div>
+
+            <div class="audio-controls" style="display: none;">
+                <audio id="recorded-audio" controls></audio>
+                <div class="text-display-buttons">
+                    <button id="show-transcription">Show Transcription</button>
+                    <button id="show-refined">Show Refined Query</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+stpenv/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+*.sqlite
+*.sqlite3
+*.db
+*.wav
+*.mp3
+.ipynb_checkpoints/
+node_modules/

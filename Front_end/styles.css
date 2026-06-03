@@ -1,0 +1,506 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./images/University-of-Salford-UK-1.jpg') center/cover no-repeat;
+    opacity: 1; /* Adjust transparency */
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: #03324fd4;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 20;
+}
+
+.new-chat-btn {
+    background-color: #3977f3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.model-selector {
+    background-color: #2d2d2d;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.model-selector h3 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.model-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.model-option.selected {
+    background-color: #404040;
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+
+.chat-header {
+    padding: 16px 24px;
+    background-color: rgba(255, 255, 255, 0.422);
+    border-bottom: 1.5px solid #acabab;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 2.0rem;
+    color: #000000;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    position: relative;
+    white-space: pre-line;
+}
+
+.message strong {
+    font-weight: 600;
+}
+
+.message em {
+    font-style: italic;
+}
+
+.message ul,
+.message ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.message li {
+    margin: 5px 0;
+}
+
+.message h1,
+.message h2,
+.message h3,
+.message h4 {
+    margin: 15px 0 10px 0;
+    font-weight: 600;
+}
+
+.message h1 {
+    font-size: 1.5em;
+}
+
+.message h2 {
+    font-size: 1.3em;
+}
+
+.message h3 {
+    font-size: 1.1em;
+}
+
+.message h4 {
+    font-size: 1em;
+}
+
+.message p {
+    margin: 10px 0;
+}
+
+.user-message {
+    background-color: #3977f3ec;
+    color: white;
+    align-self: flex-end;
+}
+
+.ai-message {
+    background-color: rgba(255, 255, 255, 0.806);
+    color: black;
+    align-self: flex-start;
+}
+
+.system-message {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    align-self: center;
+    max-width: 90%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px dashed #dee2e6;
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.timestamp {
+    font-size: 0.7rem;
+    color: #666;
+    position: absolute;
+    bottom: -18px;
+}
+
+.user-message .timestamp {
+    right: 4px;
+}
+
+.ai-message .timestamp {
+    left: 4px;
+}
+
+.sources {
+    font-size: 0.8em;
+    margin-top: 8px;
+    color: #666;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+}
+
+.input-container {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.724);
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+    position: sticky;
+    bottom: 0;
+}
+
+#query-input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+#submit-btn {
+    background-color: #3977f3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#submit-btn:hover {
+    background-color: #3977f3;
+}
+
+.typing-indicator {
+    display: none;
+    padding: 12px 16px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    align-self: flex-start;
+    color: #666;
+    font-style: italic;
+}
+
+.typing-indicator span {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.chat-history {
+    margin-top: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-item {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.history-item:hover {
+    background-color: #2d2d2d;
+}
+
+.history-item.active {
+    background-color: #404040;
+}
+
+.history-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.delete-chat {
+    opacity: 0;
+    transition: opacity 0.2s;
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.history-item:hover .delete-chat {
+    opacity: 1;
+}
+
+.delete-chat:hover {
+    background-color: rgba(255, 68, 68, 0.2);
+}
+
+.time-group-header {
+    padding: 10px;
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.voice-btn {
+    background-color: #4caf4f4f;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.voice-btn.recording {
+    background-color: #ff4444;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.audio-controls {
+    display: none;
+}
+
+.text-display-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.text-display-buttons button {
+    padding: 8px 16px;
+    background-color: #3977f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.text-display-buttons button:hover {
+    background-color: #3977f3;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.popup-text {
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+}
+
+.popup-close {
+    background-color: #3977f3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.popup-close:hover {
+    background-color: #3977f3;
+}
+
+/* Modify the audio player style in messages */
+.message audio {
+    width: 300px;
+    height: 40px;
+    margin: 5px 5px;
+}
+
+.recording-indicator {
+    display: none;
+    padding: 12px 20px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    color: #ff4444;
+    font-size: 14px;
+}
+
+.recording-indicator span {
+    display: inline-block;
+    animation: ellipsis 1.4s infinite;
+}
+
+@keyframes ellipsis {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+}
+
+.audio-label {
+    font-size: 0.8em;
+    color: #0a0909;
+    margin-bottom: 4px;
+    font-style: italic;
+}
+
+.show-text-btn {
+    background-color: #3977f3;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 4px 0;
+    transition: background-color 0.3s;
+}
+
+.show-text-btn:hover {
+    background-color: #3977f3;
+}
+
+.show-text-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.text-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.text-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
